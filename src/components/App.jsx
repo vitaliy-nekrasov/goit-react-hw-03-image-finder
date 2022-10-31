@@ -1,6 +1,8 @@
 import { Component } from 'react';
 import { Searchbar } from './Searchbar/Searchbar';
-// import { getPictures } from 'services/api';
+import { ImageGallery } from './ImageGallery/ImageGallery';
+import { ImageGalleryItem } from 'components/ImageGalleryItem/ImageGalleryItem';
+import { Button } from './Button/Button';
 
 export class App extends Component {
   state = {
@@ -9,11 +11,14 @@ export class App extends Component {
   submitForm = searchQuery => {
     this.setState({ searchQuery });
   };
-  // getPictures();
   render() {
     return (
       <div>
         <Searchbar onSubmit={this.submitForm} />
+        <ImageGallery>
+          <ImageGalleryItem searchQuery={this.state.searchQuery} />
+        </ImageGallery>
+        <Button />
       </div>
     );
   }
