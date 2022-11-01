@@ -5,14 +5,20 @@ import { getPictures } from 'services/api';
 export class ImageGalleryItem extends Component {
   state = {
     result: [],
-    page: 1,
   };
   componentDidUpdate(prevProps, prevState) {
     const prevQuery = prevProps.searchQuery;
     const nextQuery = this.props.searchQuery;
+    const prevPage = prevProps.page;
+    const nextPage = this.props.page;
     if (prevQuery !== nextQuery) {
-      getPictures(nextQuery, this.state.page).then(response => {
-        this.setState({ result: response });
+      this.setState({ result: [] });
+    }
+    if (prevQuery !== nextQuery || prevPage !== nextPage) {
+      getPictures(nextQuery, this.props.page).then(response => {
+        this.setState(prevState => ({
+          result: [...prevState.result, ...response],
+        }));
       });
     }
   }
