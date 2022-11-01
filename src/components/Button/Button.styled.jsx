@@ -25,3 +25,9 @@ export const LoadMoreBtn = styled.button`
     background-color: #303f9f;
   }
 `;
+
+export const Wrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  padding-bottom: 20px;
+`;

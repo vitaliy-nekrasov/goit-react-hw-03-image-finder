@@ -1,9 +1,11 @@
-import { LoadMoreBtn } from './Button.styled';
+import { LoadMoreBtn, Wrapper } from './Button.styled';
 
 export function Button({ loadMore }) {
   return (
-    <LoadMoreBtn onClick={loadMore} type="button">
-      Load more
-    </LoadMoreBtn>
+    <Wrapper>
+      <LoadMoreBtn onClick={loadMore} type="button">
+        Load more
+      </LoadMoreBtn>
+    </Wrapper>
   );
 }
