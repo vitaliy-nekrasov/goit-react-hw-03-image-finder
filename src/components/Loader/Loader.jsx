@@ -1,6 +1,5 @@
 import { MagnifyingGlass } from 'react-loader-spinner';
 import { Wrapper } from './Loader.styled';
-// import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css';
 
 export function Loader() {
   return (

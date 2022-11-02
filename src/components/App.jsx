@@ -4,6 +4,7 @@ import { ImageGallery } from './ImageGallery/ImageGallery';
 import { ImageGalleryItem } from 'components/ImageGalleryItem/ImageGalleryItem';
 import { Button } from './Button/Button';
 import { Loader } from './Loader/Loader';
+import { Modal } from './Modal/Modal';
 
 export class App extends Component {
   state = {
@@ -11,11 +12,17 @@ export class App extends Component {
     result: [],
     page: 1,
     isLoading: false,
+    showModal: false,
+    bigImg: '',
   };
 
-  // componentDidUpdate(prevProps, prevState) {
-  //   console.log(prevProps);
-  // }
+  getBigImg = img => {
+    this.setState({ bigImg: img });
+  };
+
+  toggleModal = () => {
+    this.setState(prevState => ({ showModal: !prevState.showModal }));
+  };
 
   getItems = items => {
     this.setState({ result: items });
@@ -40,20 +47,29 @@ export class App extends Component {
     this.setState({ searchQuery, page: 1 });
   };
   render() {
+    const { searchQuery, page, isLoading, showModal, bigImg } = this.state;
+
     return (
       <div>
         <Searchbar onSubmit={this.submitForm} />
         <ImageGallery>
           <ImageGalleryItem
-            searchQuery={this.state.searchQuery}
-            page={this.state.page}
+            searchQuery={searchQuery}
+            page={page}
             loading={this.isLoadingToggle}
             getItems={this.getItems}
+            onClick={this.toggleModal}
+            getBigImg={this.getBigImg}
           />
         </ImageGallery>
-        {this.state.isLoading && <Loader />}
-        {this.state.searchQuery !== '' && this.state.isLoading === false && (
+        {searchQuery !== '' && isLoading === false && (
           <Button loadMore={this.loadMore} />
+        )}
+        {isLoading && <Loader />}
+        {showModal && (
+          <Modal onClose={this.toggleModal}>
+            <img src={bigImg} alt={searchQuery} />
+          </Modal>
         )}
       </div>
     );
