@@ -1,4 +1,5 @@
 import { LoadMoreBtn, Wrapper } from './Button.styled';
+import PropTypes from 'prop-types';
 
 export function Button({ loadMore }) {
   return (
@@ -9,3 +10,7 @@ export function Button({ loadMore }) {
     </Wrapper>
   );
 }
+
+Button.propTypes = {
+  loadMore: PropTypes.func.isRequired,
+};

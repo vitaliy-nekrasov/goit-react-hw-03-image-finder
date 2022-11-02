@@ -40,7 +40,7 @@ export class App extends Component {
           top: document.documentElement.scrollHeight,
           behavior: 'smooth',
         });
-      }, 1000);
+      }, 700);
     }
   };
   submitForm = searchQuery => {

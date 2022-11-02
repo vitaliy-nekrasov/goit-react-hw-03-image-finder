@@ -1,13 +1,21 @@
 import { Component } from 'react';
 import { Item, Image } from './ImageGalleryItem.styled';
 import { getPictures } from 'services/api';
+import PropTypes from 'prop-types';
 
 export class ImageGalleryItem extends Component {
+  static propTypes = {
+    loading: PropTypes.func.isRequired,
+    getItems: PropTypes.func.isRequired,
+    onClick: PropTypes.func.isRequired,
+    getBigImg: PropTypes.func.isRequired,
+  };
+
   state = {
     result: [],
   };
 
-  async componentDidUpdate(prevProps, prevState) {
+  componentDidUpdate(prevProps, prevState) {
     const prevQuery = prevProps.searchQuery;
     const nextQuery = this.props.searchQuery;
     const prevPage = prevProps.page;
